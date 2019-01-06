@@ -1,3 +1,8 @@
+/**
+ * Create array of objects with metadata from phrase.
+ * @param {string} phrase.
+ * @returns {Object} array of objects with metadata.
+ */
 const formatTextArrayGeneratorHelper = (phrase) => {
   let boldPhrasesArray  = [];
   let colorPhrasesArray = [];
@@ -6,11 +11,11 @@ const formatTextArrayGeneratorHelper = (phrase) => {
   let regexResult = null;
 
   // Find bold phrases.
-  const hasBoldRegex = /<format([a-zA-Z0-9",#=\(\)\s])*(?<bold>bold)([a-zA-Z0-9",#=\(\)\s])*>(?<content>([\sa-zA-Z0-9"'\(\)#])*)*<format>/g;
+  const hasBoldRegex = /<format([a-zA-Z0-9",#=\(\)\s])*(bold)([a-zA-Z0-9",#=\(\)\s])*>(([\sa-zA-Z0-9"'\(\)#])*)*<format>/g;
 
   while (regexResult = hasBoldRegex.exec(phrase)) {
-    const bold    = regexResult.groups.bold;
-    const content = regexResult.groups.content;
+    const bold    = regexResult[2];
+    const content = regexResult[4];
 
     const resultObject = {
       isBold : bold === 'bold',
@@ -21,11 +26,11 @@ const formatTextArrayGeneratorHelper = (phrase) => {
   }
 
   // Find color phrases.
-  const hasColorRegex = /<format([a-zA-Z0-9"=,\s])*color="(?<color>[\sa-z,0-9#\(\)]*)"([a-zA-Z0-9"=,\s])*>(?<content>([\sa-zA-Z0-9"'\(\)#])*)*<format>/g;
+  const hasColorRegex = /<format([a-zA-Z0-9"=,\s])*color="([\sa-z,0-9#\(\)]*)"([a-zA-Z0-9"=,\s])*>(([\sa-zA-Z0-9"'\(\)#])*)*<format>/g;
 
   while (regexResult = hasColorRegex.exec(phrase)) {
-    const color   = regexResult.groups.color;
-    const content = regexResult.groups.content;
+    const color   = regexResult[2];
+    const content = regexResult[4];
 
     const resultObject = {
       color : color !== '' ? color : null,
@@ -70,4 +75,3 @@ const formatTextArrayGeneratorHelper = (phrase) => {
 };
 
 export default formatTextArrayGeneratorHelper;
-
