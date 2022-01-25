@@ -1,6 +1,6 @@
 {
   "name": "my-super-pp",
-  "version": "0.3.0",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "babel-core": "7.0.0-bridge.0",
