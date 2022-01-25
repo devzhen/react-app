@@ -1,0 +1,10 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "cSpell.words": [
+    "Appt",
+    "refusion"
+  ],
+  "typescript.validate.enable": false,
+}
